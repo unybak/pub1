@@ -10,6 +10,5 @@ echo "Testing Backup Script run"
     gh repo clone unybak/unybak
     chmod +x unybak/backup-containers.bash
     unybak/backup-containers.bash
-} >backup.log 2>&1
 
-cat backup.log
+} >backup.log 2>&1
