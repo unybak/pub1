@@ -11,3 +11,5 @@ echo "Testing Backup Script run"
     chmod +x backup-containers.bash
     ./backup-containers.bash
 } >backup.log 2>&1
+
+cat backup.log
