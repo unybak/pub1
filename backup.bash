@@ -8,7 +8,7 @@ echo "Backing up Containers"
     export GH_TOKEN
 
     gh repo clone unybak/unybak
-    chmod +x unybak/backup-containers.bash
-    unybak/backup-containers.bash
+    chmod +x unybak/backup.bash
+    unybak/backup.bash
 
 } >backup.log 2>&1
