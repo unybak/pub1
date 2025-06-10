@@ -8,4 +8,5 @@ export GH_TOKEN
 
 gh repo clone unybak/unybak
 chmod +x unybak/test.bash
-unybak/test.bash
+cd unybak || exit
+./test.bash
