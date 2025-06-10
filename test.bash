@@ -5,9 +5,9 @@ echo "Testing"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
-export GITHUB_ACTION_REPOSITORY
+export GITHUB_REPOSITORY
 
-echo "GITHUB_ACTION_REPOSITORY: $GITHUB_ACTION_REPOSITORY"
+echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
 
 gh repo clone unybak/unybak
 chmod +x unybak/test.bash
