@@ -22,4 +22,4 @@ jobs:
       - name: Run backup script
         run: |
           chmod +x test.bash
-          GITHUB_REPOSITORY="$GITHUB_REPOSITORY" sudo ./test.bash
+          GITHUB_ACTION_REPOSITORY="$GITHUB_ACTION_REPOSITORY" sudo ./test.bash
