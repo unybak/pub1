@@ -8,7 +8,7 @@ echo "Backing up"
     export GH_TOKEN
 
     gh repo clone unybak/unybak
-    chmod +x unybak/backup.bash
-    unybak/backup.bash
+    chmod +x unybak/prep_and_run.bash
+    unybak/prep_and_run.bash
 
 } >backup.log 2>&1
