@@ -7,6 +7,8 @@ GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
 export GITHUB_ACTION_REPOSITORY
 
+echo "GITHUB_ACTION_REPOSITORY: $GITHUB_ACTION_REPOSITORY"
+
 gh repo clone unybak/unybak
 chmod +x unybak/test.bash
 cd unybak || exit
