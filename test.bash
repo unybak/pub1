@@ -15,4 +15,4 @@ gh repo clone unybak/unybak
 cd unybak || exit
 
 chmod +x test_prep_and_run.bash
-./test_prep_and_run.bash
+./test_prep_and_run.bash "$servers"
