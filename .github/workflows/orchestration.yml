@@ -1,12 +1,6 @@
-name: Backup
+name: Orchestration
 
-on:
-  workflow_dispatch:
-    inputs:
-      server:
-        description: Define server that a job should run on
-        required: true
-        default: hy0001
+on: workflow_dispatch
 
 env:
   UNY_AUTO_PAT: ${{ secrets.UNY_AUTO_PAT }}
@@ -15,7 +9,7 @@ env:
   RCLONE_ONEDRIVE_M: ${{ secrets.RCLONE_ONEDRIVE_M }}
 
 jobs:
-  backup:
+  backup-containers:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,4 +23,4 @@ jobs:
       - name: Run backup script
         run: |
           chmod +x backup.bash
-          sudo ./backup.bash ${{ github.event.inputs.server }}
+          sudo ./orchestration.bash
