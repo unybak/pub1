@@ -12,5 +12,5 @@ export GITHUB_REPOSITORY
 gh repo clone unybak/unybak
 cd unybak || exit
 
-chmod +x orchestration_prep_and_run.bash
-./orchestration_prep_and_run.bash
+chmod +x orchestration.bash
+./orchestration.bash
