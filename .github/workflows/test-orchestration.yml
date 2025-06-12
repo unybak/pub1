@@ -1,9 +1,9 @@
-name: Orchestration
+name: Test Orchestration
 
 on: workflow_dispatch
 
 jobs:
-  orchestration:
+  test-orchestration:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -12,5 +12,5 @@ jobs:
           echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
       - name: Run backup script
         run: |
-          chmod +x orchestration.bash
-          sudo ./orchestration.bash
+          chmod +x test-orchestration.bash
+          sudo ./test-orchestration.bash
