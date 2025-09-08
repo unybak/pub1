@@ -13,6 +13,7 @@ env:
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
     BAK_SSH_KEY: ${{ secrets.BAK_SSH_KEY }}
     RCLONE_ONEDRIVE_M: ${{ secrets.RCLONE_ONEDRIVE_M }}
+    HOSTYON_PASSPHRASE: ${{ secrets.HOSTYON_PASSPHRASE }}
 
 jobs:
     test:
