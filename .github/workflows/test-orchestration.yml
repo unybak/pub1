@@ -3,18 +3,18 @@ name: Test Orchestration
 on: workflow_dispatch
 
 env:
-  GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
+    GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
 
 jobs:
-  test-orchestration:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Save variables to files
-        run: |
-          echo "$GH_TOKEN" >GH_TOKEN
-          echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
-      - name: Run backup script
-        run: |
-          chmod +x test-orchestration.bash
-          sudo ./test-orchestration.bash
+    test-orchestration:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Save variables to files
+              run: |
+                  echo "$GH_TOKEN" >GH_TOKEN
+                  echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
+            - name: Run backup script
+              run: |
+                  chmod +x test-orchestration.bash
+                  sudo ./test-orchestration.bash
