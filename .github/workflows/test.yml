@@ -27,6 +27,7 @@ jobs:
                   echo "$BAK_SSH_KEY" >BAK_SSH_KEY
                   echo "$RCLONE_ONEDRIVE_M" >RCLONE_ONEDRIVE_M
                   echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
+                  echo "$HOSTYON_PASSPHRASE" >HOSTYON_PASSPHRASE
             - name: Run backup script
               run: |
                   chmod +x test.bash
