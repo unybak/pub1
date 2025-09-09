@@ -15,6 +15,6 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   sudo mkdir -p ~/.config/rclone
-                  echo "$RCLONE_ONEDRIVE_M" >~/.config/rclone/rclone.conf
-                  DEBIAN_FRONTEND=noninteractive apt-get install -y rclone
+                  sudo echo "$RCLONE_ONEDRIVE_M" >~/.config/rclone/rclone.conf
+                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
                   rclone lsf OneDrive-m:
