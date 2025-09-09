@@ -17,4 +17,4 @@ jobs:
                   mkdir -p ~/.config/rclone
                   echo "$RCLONE_ONEDRIVE_M" >~/.config/rclone/rclone.conf
                   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
-                  rclone lsf OneDrive-m:
+                  if rclone lsf OneDrive-m: >/dev/null; then echo "rclone successfully used!"; fi
