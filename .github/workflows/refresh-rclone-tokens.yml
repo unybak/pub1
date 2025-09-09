@@ -9,11 +9,12 @@ env:
     RCLONE_ONEDRIVE_M: ${{ secrets.RCLONE_ONEDRIVE_M }}
 
 jobs:
-    backup:
+    refresh-rclone-token:
         runs-on: ubuntu-latest
         steps:
             - name: Save rclone conf and keep the token fresh
               run: |
+                  mkdir -p ~/.config/rclone
                   echo "$RCLONE_ONEDRIVE_M" >~/.config/rclone/rclone.conf
                   DEBIAN_FRONTEND=noninteractive apt-get install -y rclone
                   rclone lsf OneDrive-m:
