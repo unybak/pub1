@@ -13,4 +13,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Trigger backup workflow
-              run: gh workflow run orchestration.yml
+              run: |
+                  gh workflow run orchestration.yml
