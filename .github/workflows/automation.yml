@@ -12,6 +12,7 @@ jobs:
     automated-workflow-run:
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
             - name: Trigger backup workflow
               run: |
                   gh workflow run orchestration.yml
