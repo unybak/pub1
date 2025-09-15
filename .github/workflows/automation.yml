@@ -1,0 +1,13 @@
+name: Automation
+
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0/5 * * * *"
+
+jobs:
+    automated-workflow-run:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Trigger backup workflow
+              run: gh workflow run orchestration.yml
