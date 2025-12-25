@@ -16,8 +16,8 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
-                  mkdir -p ~/.config/rclone
-                  echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
+                  sudo mkdir -p ~/.config/rclone
+                  sudo echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
                   ### Install unypkg and rclone
                   wget -qO- uny.nu/pkg | sudo sh
@@ -33,4 +33,4 @@ jobs:
 
                   ### Update the secret with the newly rotated token
                   owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
-                  gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
+                  sudo gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
