@@ -20,7 +20,9 @@ jobs:
                   echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
                   ### Install rclone
-                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
+                  DEBIAN_FRONTEND=noninteractive sudo apt install -y rclone
+
+                  echo "test"
 
                   ### Refresh the rclone OneDrive token
                   if rclone lsd OneDrive-m:/ >/dev/null; then 
