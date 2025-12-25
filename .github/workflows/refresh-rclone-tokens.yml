@@ -16,8 +16,8 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
-                  mkdir -p /root/.config/rclone
-                  echo "$RCLONE_CONFIG" >/root/.config/rclone/rclone.conf
+                  sudo mkdir -p /root/.config/rclone
+                  sudo echo "$RCLONE_CONFIG" >/root/.config/rclone/rclone.conf
 
                   ### Install rclone
                   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
