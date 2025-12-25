@@ -16,12 +16,11 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
-                  sudo mkdir -p ~/.config/rclone
-                  sudo echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
+                  mkdir -p ~/.config/rclone
+                  echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
-                  ### Install unypkg and rclone
-                  wget -qO- uny.nu/pkg | sudo sh
-                  sudo unyp si rclone
+                  ### Install rclone
+                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
 
                   ### Refresh the rclone OneDrive token
                   if rclone lsd OneDrive-m:/ >/dev/null; then 
@@ -33,4 +32,4 @@ jobs:
 
                   ### Update the secret with the newly rotated token
                   owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
-                  sudo gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
+                  gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
