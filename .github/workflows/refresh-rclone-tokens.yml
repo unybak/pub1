@@ -19,8 +19,9 @@ jobs:
                   mkdir -p ~/.config/rclone
                   echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
-                  ### Install rclone
-                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
+                  ### Install unypkg and rclone
+                  wget -qO- uny.nu/pkg | sh
+                  unyp si rclone
 
                   ### Refresh the rclone OneDrive token
                   if rclone lsd OneDrive-m:/ >/dev/null; then 
