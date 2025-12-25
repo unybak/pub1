@@ -15,7 +15,7 @@ jobs:
         steps:
             - name: Save rclone conf and keep the token fresh
               run: |
-                  curl -sS -f -I -H "Authorization: token ${GH_TOKEN}" https://api.github.com | grep ^x-oauth-scopes: | cut -d' ' -f2- | tr -d "[:space:]" | tr ',' '\n'
+                  gh auth status
                   ### Setup config for rclone
                   sudo mkdir -p /root/.config/rclone
                   sudo bash -c "echo '$RCLONE_CONFIG' >/root/.config/rclone/rclone.conf"
