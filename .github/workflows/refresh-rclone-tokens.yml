@@ -20,8 +20,8 @@ jobs:
                   echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
                   ### Install unypkg and rclone
-                  wget -qO- uny.nu/pkg | sh
-                  unyp si rclone
+                  wget -qO- uny.nu/pkg | sudo sh
+                  sudo unyp si rclone
 
                   ### Refresh the rclone OneDrive token
                   if rclone lsd OneDrive-m:/ >/dev/null; then 
