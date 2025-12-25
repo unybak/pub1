@@ -19,13 +19,14 @@ jobs:
                   pwd
                   cd $HOME
                   pwd
+                  whoami
                   mkdir -p ~/.config/rclone
                   echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
                   ### Install rclone
                   DEBIAN_FRONTEND=noninteractive sudo apt install -y rclone
 
-                  echo "test"
+                  echo "After install"
 
                   ### Refresh the rclone OneDrive token
                   if rclone lsd OneDrive-m:/ >/dev/null; then 
