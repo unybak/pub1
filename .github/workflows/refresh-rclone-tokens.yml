@@ -15,15 +15,15 @@ jobs:
         steps:
             - name: Save rclone conf and keep the token fresh
               run: |
+                  ### Install rclone
+                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
+
                   ### Setup config for rclone
                   sudo mkdir -p /root/.config/rclone
                   sudo bash -c "echo '$RCLONE_CONFIG' >/root/.config/rclone/rclone.conf"
 
-                  ### Install rclone
-                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
-
                   ### Refresh the rclone OneDrive token
-                  if sudo rclone lsd OneDrive-m:/ >/dev/null; then 
+                  if sudo bash -c "rclone lsd OneDrive-m:/ >/dev/null"; then 
                       echo "rclone successfully used and token refreshed!"
                   else
                       echo "rclone run failed! Token not refreshed! Aborting."
