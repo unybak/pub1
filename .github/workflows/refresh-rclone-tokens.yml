@@ -33,3 +33,5 @@ jobs:
                   ### Update the secret with the newly rotated token
                   owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
                   gh secret set RCLONE_CONFIG --org "$owner" --body "$(sudo cat /root/.config/rclone/rclone.conf)"
+                  echo "Current expiry values:"
+                  sudo grep -o "\"expiry\":[^}]*" /root/.config/rclone/rclone.conf
