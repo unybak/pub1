@@ -16,15 +16,12 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
-                  pwd
-                  cd $HOME
-                  pwd
-                  whoami
-                  mkdir -p ~/.config/rclone
-                  echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
+                  cd "$HOME" || exit
+                  mkdir -p /home/"$(whoami)"/.config/rclone
+                  echo "$RCLONE_CONFIG" >/home/"$(whoami)"/.config/rclone/rclone.conf
 
                   ### Install rclone
-                  DEBIAN_FRONTEND=noninteractive sudo apt install -y rclone
+                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
 
                   echo "After install"
 
