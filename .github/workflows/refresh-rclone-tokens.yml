@@ -19,7 +19,9 @@ jobs:
                   cd "$HOME" || exit
                   mkdir -p /home/"$(whoami)"/.config/rclone
                   echo "$RCLONE_CONFIG" >/home/"$(whoami)"/.config/rclone/rclone.conf
-                  head -n1 /home/"$(whoami)"/.config/rclone/rclone.conf
+                  ls -lh /home/"$(whoami)"/.config/rclone/rclone.conf
+                  echo "Testvalue" >/home/"$(whoami)"/.config/rclone/testfile
+                  cat /home/"$(whoami)"/.config/rclone/testfile
 
                   ### Install rclone
                   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
