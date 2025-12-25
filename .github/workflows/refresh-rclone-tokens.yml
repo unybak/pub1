@@ -16,6 +16,9 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
+                  pwd
+                  cd $HOME
+                  pwd
                   mkdir -p ~/.config/rclone
                   echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
 
