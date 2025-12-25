@@ -16,20 +16,14 @@ jobs:
             - name: Save rclone conf and keep the token fresh
               run: |
                   ### Setup config for rclone
-                  cd "$HOME" || exit
-                  mkdir -p /home/"$(whoami)"/.config/rclone
-                  echo "$RCLONE_CONFIG" >/home/"$(whoami)"/.config/rclone/rclone.conf
-                  ls -lh /home/"$(whoami)"/.config/rclone/rclone.conf
-                  echo "Testvalue" >/home/"$(whoami)"/.config/rclone/testfile
-                  cat /home/"$(whoami)"/.config/rclone/testfile
+                  mkdir -p /root/.config/rclone
+                  echo "$RCLONE_CONFIG" >/root/.config/rclone/rclone.conf
 
                   ### Install rclone
                   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
 
-                  echo "After install"
-
                   ### Refresh the rclone OneDrive token
-                  if rclone lsd OneDrive-m:/ >/dev/null; then 
+                  if sudo rclone lsd OneDrive-m:/ >/dev/null; then 
                       echo "rclone successfully used and token refreshed!"
                   else
                       echo "rclone run failed! Token not refreshed! Aborting."
@@ -38,4 +32,4 @@ jobs:
 
                   ### Update the secret with the newly rotated token
                   owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
-                  gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
+                  gh secret set RCLONE_CONFIG --org "$owner" --body "$(sudo cat /root/.config/rclone/rclone.conf)"
