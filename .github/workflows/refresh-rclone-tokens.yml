@@ -3,10 +3,11 @@ name: Refresh rclone tokens
 on:
     workflow_dispatch:
     schedule:
-        - cron: "15 8 * * *"
+        - cron: "15 8 */2 * *"
 
 env:
-    RCLONE_ONEDRIVE_M: ${{ secrets.RCLONE_ONEDRIVE_M }}
+    RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
+    GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
 
 jobs:
     refresh-rclone-token:
@@ -14,7 +15,21 @@ jobs:
         steps:
             - name: Save rclone conf and keep the token fresh
               run: |
+                  ### Setup config for rclone
                   mkdir -p ~/.config/rclone
-                  echo "$RCLONE_ONEDRIVE_M" >~/.config/rclone/rclone.conf
+                  echo "$RCLONE_CONFIG" >~/.config/rclone/rclone.conf
+
+                  ### Install rclone
                   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
-                  if rclone lsf OneDrive-m: >/dev/null; then echo "rclone successfully used!"; fi
+
+                  ### Refresh the rclone OneDrive token
+                  if rclone lsd OneDrive-m:/ >/dev/null; then 
+                      echo "rclone successfully used and token refreshed!"
+                  else
+                      echo "rclone run failed! Token not refreshed! Aborting."
+                      exit 1
+                  fi
+
+                  ### Update the secret with the newly rotated token
+                  owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
+                  gh secret set RCLONE_CONFIG --org "$owner" --body "$(cat ~/.config/rclone/rclone.conf)"
