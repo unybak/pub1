@@ -15,7 +15,6 @@ jobs:
         steps:
             - name: Save rclone conf and keep the token fresh
               run: |
-                  gh auth status
                   ### Setup config for rclone
                   sudo mkdir -p /root/.config/rclone
                   sudo bash -c "echo '$RCLONE_CONFIG' >/root/.config/rclone/rclone.conf"
