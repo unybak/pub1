@@ -1,4 +1,5 @@
-name: Backup {{ github.event.inputs.server }}
+name: Backup
+run-name: "Backing up: ${{ github.event.inputs.server }}"
 
 on:
     workflow_dispatch:
