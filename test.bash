@@ -3,7 +3,7 @@
 
 echo "Testing"
 
-server="$*"
+servers="$*"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
@@ -18,4 +18,4 @@ gh repo clone unybak/unybak
 cd unybak || exit
 
 chmod +x test_prep_and_run.bash
-./test_prep_and_run.bash "$server"
+./test_prep_and_run.bash "$servers"
