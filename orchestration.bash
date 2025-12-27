@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034,SC1091,SC2154
 
-echo "Backing up"
+echo "Orchestrating"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN

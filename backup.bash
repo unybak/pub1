@@ -2,6 +2,8 @@
 # shellcheck disable=SC2034,SC1091,SC2154
 
 echo "Backing up"
+# shellcheck disable=SC2068
+echo $@
 
 servers="$*"
 
