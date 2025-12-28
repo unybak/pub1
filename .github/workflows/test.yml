@@ -1,4 +1,5 @@
 name: Test
+run-name: "Testing backup: ${{ github.event.inputs.server }}"
 
 on:
     workflow_dispatch:
