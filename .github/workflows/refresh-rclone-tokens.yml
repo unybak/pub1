@@ -2,8 +2,8 @@ name: Refresh rclone tokens
 
 on:
     workflow_dispatch:
-    schedule:
-        - cron: "15 8 */2 * *"
+    # schedule:
+    #     - cron: "15 8 */2 * *"
 
 env:
     RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
