@@ -9,7 +9,7 @@ jobs:
     test-orchestration:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v7
             - name: Save variables to files
               run: |
                   echo "$GH_TOKEN" >GH_TOKEN
