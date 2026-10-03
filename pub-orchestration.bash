@@ -7,6 +7,8 @@ echo "Orchestrating"
 config_repo="$1"
 # exec_repo is by default unybak/pub1
 exec_repo="$2"
+# code_repo is by default unybak/unybak
+code_repo="$3"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
@@ -14,11 +16,11 @@ export GH_TOKEN
 GITHUB_REPOSITORY="$(cat GITHUB_REPOSITORY)"
 export GITHUB_REPOSITORY
 
-# Run from unybak/unybak directory
-gh repo clone unybak/unybak
-cd unybak || exit
+# Run from code_repo directory
+gh repo clone "$code_repo" code
+cd code || exit
 
 gh repo clone "$config_repo" config
 
 chmod +x orchestration.bash
-./orchestration.bash "$exec_repo"
+./orchestration.bash "$exec_repo" "$code_repo"

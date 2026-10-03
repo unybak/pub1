@@ -3,14 +3,23 @@ name: Orchestration
 on:
     workflow_dispatch:
         inputs:
+            log_output:
+                description: Show output?
+                type: boolean
+                required: true
+                default: false
             config_repo:
-                description: ssh_config file name to use
+                description: ssh_config repository to use
                 required: true
                 default: unybak/hostyon-ssh-config-1
             exec_repo:
-                description: ssh_config file name to use
+                description: Runner repository to use
                 required: true
                 default: unybak/pub1
+            code_repo:
+                description: Code repository to use
+                required: true
+                default: unybak/unybak
 
 env:
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
@@ -27,5 +36,9 @@ jobs:
                   echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
             - name: Run backup orchestration script
               run: |
+                  log_output="${{ github.event.inputs.log_output }}"
+                  export log_output
                   chmod +x pub-orchestration.bash
-                  sudo ./pub-orchestration.bash ${{ github.event.inputs.config_repo }} ${{ github.event.inputs.exec_repo }}
+                  sudo ./pub-orchestration.bash ${{ github.event.inputs.config_repo }} \
+                    ${{ github.event.inputs.exec_repo }} \
+                    ${{ github.event.inputs.code_repo }}

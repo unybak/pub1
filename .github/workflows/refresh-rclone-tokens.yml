@@ -23,4 +23,6 @@ jobs:
             - name: Run token refresh script
               run: |
                   chmod +x pub-refresh-rclone-tokens.bash
-                  ./pub-refresh-rclone-tokens.bash --remote "OneDrive-m" --org "unybak"
+                  ./pub-refresh-rclone-tokens.bash \
+                    --remote "OneDrive-m" \
+                    --org "$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")""

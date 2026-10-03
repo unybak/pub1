@@ -4,10 +4,18 @@ run-name: "Backing up: ${{ github.event.inputs.server }}"
 on:
     workflow_dispatch:
         inputs:
+            log_output:
+                description: Show output?
+                type: boolean
+                required: true
+                default: false
             server:
                 description: Define server that a job should run on
                 required: true
-                default: hy0001
+            code_repo:
+                description: Code repository to use
+                required: true
+                default: unybak/unybak
 
 env:
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
@@ -30,5 +38,8 @@ jobs:
                   echo "$HOSTYON_PASSPHRASE" >HOSTYON_PASSPHRASE
             - name: Run backup script
               run: |
+                  log_output="${{ github.event.inputs.log_output }}"
+                  export log_output
                   chmod +x pub-backup.bash
-                  sudo ./pub-backup.bash ${{ github.event.inputs.server }}
+                  sudo ./pub-backup.bash ${{ github.event.inputs.server }} \
+                    ${{ github.event.inputs.code_repo }}

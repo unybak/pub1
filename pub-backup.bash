@@ -5,7 +5,8 @@ echo "Backing up"
 # shellcheck disable=SC2068
 echo $@
 
-servers="$*"
+server="$1"
+code_repo="$2"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
@@ -16,9 +17,9 @@ export GITHUB_REPOSITORY
 HOSTYON_PASSPHRASE="$(cat HOSTYON_PASSPHRASE)"
 export HOSTYON_PASSPHRASE
 
-# Run from unybak/unybak directory
-gh repo clone unybak/unybak
-cd unybak || exit
+# Run from code_repo directory
+gh repo clone "$code_repo" code
+cd code || exit
 
-chmod +x backup-prep-and-run.bash
-./backup-prep-and-run.bash "$servers"
+chmod +x backup.bash
+./backup.bash "$server"
