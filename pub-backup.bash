@@ -16,8 +16,9 @@ export GITHUB_REPOSITORY
 HOSTYON_PASSPHRASE="$(cat HOSTYON_PASSPHRASE)"
 export HOSTYON_PASSPHRASE
 
+# Run from unybak/unybak directory
 gh repo clone unybak/unybak
 cd unybak || exit
 
-chmod +x backup_prep_and_run.bash
-./backup_prep_and_run.bash "$servers"
+chmod +x backup-prep-and-run.bash
+./backup-prep-and-run.bash "$servers"

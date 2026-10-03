@@ -19,12 +19,13 @@ jobs:
     orchestration:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v7
+            - name: Checkout repository
+              uses: actions/checkout@v7
             - name: Save variables to files
               run: |
                   echo "$GH_TOKEN" >GH_TOKEN
                   echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
             - name: Run backup orchestration script
               run: |
-                  chmod +x orchestration.bash
-                  sudo ./orchestration.bash ${{ github.event.inputs.config_repo }} ${{ github.event.inputs.exec_repo }}
+                  chmod +x pub-orchestration.bash
+                  sudo ./pub-orchestration.bash ${{ github.event.inputs.config_repo }} ${{ github.event.inputs.exec_repo }}

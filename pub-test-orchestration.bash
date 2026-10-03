@@ -9,6 +9,7 @@ export GH_TOKEN
 GITHUB_REPOSITORY="$(cat GITHUB_REPOSITORY)"
 export GITHUB_REPOSITORY
 
+# Run from unybak/unybak directory
 gh repo clone unybak/unybak
 cd unybak || exit
 

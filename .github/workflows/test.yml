@@ -20,7 +20,8 @@ jobs:
     test:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v7
+            - name: Checkout repository
+              uses: actions/checkout@v7
             - name: Save variables to files
               run: |
                   echo "$UNY_AUTO_PAT" >UNY_AUTO_PAT
@@ -31,5 +32,5 @@ jobs:
                   echo "$HOSTYON_PASSPHRASE" >HOSTYON_PASSPHRASE
             - name: Run backup script
               run: |
-                  chmod +x test.bash
-                  sudo ./test.bash ${{ github.event.inputs.server }}
+                  chmod +x pub-test.bash
+                  sudo ./pub-test.bash ${{ github.event.inputs.server }}

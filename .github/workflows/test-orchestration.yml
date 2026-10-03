@@ -9,12 +9,13 @@ jobs:
     test-orchestration:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v7
+            - name: Checkout repository
+              uses: actions/checkout@v7
             - name: Save variables to files
               run: |
                   echo "$GH_TOKEN" >GH_TOKEN
                   echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
             - name: Run backup script
               run: |
-                  chmod +x test-orchestration.bash
-                  sudo ./test-orchestration.bash
+                  chmod +x pub-test-orchestration.bash
+                  sudo ./pub-test-orchestration.bash
