@@ -6,32 +6,21 @@ on:
     #     - cron: "15 8 */2 * *"
 
 env:
-    RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
+    RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
 
 jobs:
     refresh-rclone-tokens:
         runs-on: ubuntu-latest
         steps:
-            - name: Save rclone conf and keep the token fresh
+            - name: Checkout repository
+              uses: actions/checkout@v7
+            - name: Save variables to files
               run: |
-                  ### Install rclone
-                  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y rclone
-
-                  ### Setup config for rclone
-                  sudo mkdir -p /root/.config/rclone
-                  sudo bash -c "echo '$RCLONE_CONFIG' >/root/.config/rclone/rclone.conf"
-
-                  ### Refresh the rclone OneDrive token
-                  if sudo bash -c "rclone lsd OneDrive-m:/ >/dev/null"; then 
-                      echo "rclone successfully used and token refreshed!"
-                  else
-                      echo "rclone run failed! Token not refreshed! Aborting."
-                      exit 1
-                  fi
-
-                  ### Update the secret with the newly rotated token
-                  owner="$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"
-                  gh secret set RCLONE_CONFIG --org "$owner" --visibility all --body "$(sudo bash -c "cat /root/.config/rclone/rclone.conf")"
-                  echo "Current expiry values:"
-                  sudo grep -o "\"expiry\":[^}]*" /root/.config/rclone/rclone.conf
+                  echo "$GH_TOKEN" >GH_TOKEN
+                  echo "$RCLONE_CONFIG" >RCLONE_CONFIG
+                  echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
+            - name: Run token refresh script
+              run: |
+                  chmod +x pub-refresh-rclone-tokens.bash
+                  ./pub-refresh-rclone-tokens.bash --remote "OneDrive-m" --org "unybak"
