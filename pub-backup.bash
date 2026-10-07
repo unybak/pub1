@@ -2,12 +2,13 @@
 # shellcheck disable=SC2034,SC1091,SC2154
 
 echo "Backing up"
-# shellcheck disable=SC2068
-echo $@
 
-server="$1"
-code_repo="$2"
-config_repo="$3"
+# code_repo is by default unybak/unybak
+code_repo="$1"
+# ssh_config_file is by default ssh_config
+config_repo="$2"
+# Server to run the backup on
+server="$3"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN

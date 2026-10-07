@@ -3,12 +3,12 @@
 
 echo "Orchestrating"
 
-# ssh_config_file is by default ssh_config
-config_repo="$1"
-# exec_repo is by default unybak/run
-exec_repo="$2"
 # code_repo is by default unybak/unybak
-code_repo="$3"
+code_repo="$1"
+# ssh_config_file is by default ssh_config
+config_repo="$2"
+# exec_repo is by default unybak/run
+exec_repo="$3"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN

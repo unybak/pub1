@@ -45,6 +45,6 @@ jobs:
                   log_output="${{ github.event.inputs.log_output }}"
                   export log_output
                   chmod +x pub-backup.bash
-                  sudo ./pub-backup.bash ${{ github.event.inputs.server }} \
-                    ${{ github.event.inputs.code_repo }} \
-                    ${{ github.event.inputs.config_repo }}
+                  sudo ./pub-backup.bash ${{ github.event.inputs.code_repo }} \
+                    ${{ github.event.inputs.config_repo }} \
+                    ${{ github.event.inputs.server }}
