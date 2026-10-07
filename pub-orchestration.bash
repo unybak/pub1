@@ -5,7 +5,7 @@ echo "Orchestrating"
 
 # ssh_config_file is by default ssh_config
 config_repo="$1"
-# exec_repo is by default unybak/pub1
+# exec_repo is by default unybak/run
 exec_repo="$2"
 # code_repo is by default unybak/unybak
 code_repo="$3"

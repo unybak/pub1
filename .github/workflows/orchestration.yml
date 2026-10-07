@@ -15,7 +15,7 @@ on:
             exec_repo:
                 description: Runner repository to use
                 required: true
-                default: unybak/pub1
+                default: unybak/run
             code_repo:
                 description: Code repository to use
                 required: true
