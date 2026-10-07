@@ -28,7 +28,7 @@ jobs:
     orchestration:
         runs-on: ubuntu-latest
         steps:
-            - name: Clone repositories
+            - name: Prepare workspace
               run: |
                   gh repo clone "${{ github.event.inputs.code_repo }}" code
                   gh repo clone "${{ github.event.inputs.config_repo }}" code/config

@@ -13,7 +13,7 @@ jobs:
     refresh-rclone-tokens:
         runs-on: ubuntu-latest
         steps:
-            - name: Clone code repository
+            - name: Prepare workspace
               run: gh repo clone unybak/unybak code
 
             - name: Run token refresh script
