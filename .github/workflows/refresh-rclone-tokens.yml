@@ -13,16 +13,13 @@ jobs:
     refresh-rclone-tokens:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v7
-            - name: Save variables to files
-              run: |
-                  echo "$GH_TOKEN" >GH_TOKEN
-                  echo "$RCLONE_CONFIG" >RCLONE_CONFIG
-                  echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
+            - name: Clone code repository
+              run: gh repo clone unybak/unybak code
+
             - name: Run token refresh script
+              working-directory: code
               run: |
-                  chmod +x pub-refresh-rclone-tokens.bash
-                  ./pub-refresh-rclone-tokens.bash \
+                  chmod +x refresh-rclone-tokens.bash
+                  ./refresh-rclone-tokens.bash \
                     --remote "OneDrive-m" \
-                    --org "$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")""
+                    --org "$(echo "$GITHUB_REPOSITORY" | grep -o "^[^/]*")"

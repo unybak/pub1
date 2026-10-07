@@ -11,7 +11,7 @@ on:
             config_repo:
                 description: ssh_config repository to use
                 required: true
-                default: unybak/hostyon-ssh-config-1
+                default: unybak/ssh-config
             exec_repo:
                 description: Runner repository to use
                 required: true
@@ -28,17 +28,16 @@ jobs:
     orchestration:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repository
-              uses: actions/checkout@v7
-            - name: Save variables to files
+            - name: Clone repositories
               run: |
-                  echo "$GH_TOKEN" >GH_TOKEN
-                  echo "$GITHUB_REPOSITORY" >GITHUB_REPOSITORY
+                  gh repo clone "${{ github.event.inputs.code_repo }}" code
+                  gh repo clone "${{ github.event.inputs.config_repo }}" code/config
+
             - name: Run backup orchestration script
+              working-directory: code
               run: |
                   log_output="${{ github.event.inputs.log_output }}"
                   export log_output
-                  chmod +x pub-orchestration.bash
-                  sudo ./pub-orchestration.bash ${{ github.event.inputs.code_repo }} \
-                    ${{ github.event.inputs.config_repo }} \
-                    ${{ github.event.inputs.exec_repo }}
+                  chmod +x orchestration.bash
+                  ./orchestration.bash "${{ github.event.inputs.exec_repo }}" \
+                    "${{ github.event.inputs.code_repo }}"
