@@ -20,6 +20,7 @@ export GITHUB_REPOSITORY
 gh repo clone "$code_repo" code
 cd code || exit
 
+# Clone ssh_config from config_repo
 gh repo clone "$config_repo" config
 
 chmod +x orchestration.bash
