@@ -7,6 +7,7 @@ echo $@
 
 server="$1"
 code_repo="$2"
+config_repo="$3"
 
 GH_TOKEN="$(cat GH_TOKEN)"
 export GH_TOKEN
@@ -20,6 +21,9 @@ export HOSTYON_PASSPHRASE
 # Run from code_repo directory
 gh repo clone "$code_repo" code
 cd code || exit
+
+# Clone ssh_config from config_repo
+gh repo clone "$config_repo" config
 
 chmod +x backup.bash
 ./backup.bash "$server"

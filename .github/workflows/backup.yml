@@ -16,6 +16,10 @@ on:
                 description: Code repository to use
                 required: true
                 default: unybak/unybak
+            config_repo:
+                description: ssh_config repository to use
+                required: true
+                default: unybak/ssh-config
 
 env:
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
@@ -42,4 +46,5 @@ jobs:
                   export log_output
                   chmod +x pub-backup.bash
                   sudo ./pub-backup.bash ${{ github.event.inputs.server }} \
-                    ${{ github.event.inputs.code_repo }}
+                    ${{ github.event.inputs.code_repo }} \
+                    ${{ github.event.inputs.config_repo }}
