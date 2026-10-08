@@ -15,7 +15,7 @@ on:
             code_repo:
                 description: Code repository to use
                 required: true
-                default: unybak/unybak
+                default: unybak/code
             config_repo:
                 description: ssh_config repository to use
                 required: true

@@ -19,7 +19,7 @@ on:
             code_repo:
                 description: Code repository to use
                 required: true
-                default: unybak/unybak
+                default: unybak/code
 
 env:
     GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
