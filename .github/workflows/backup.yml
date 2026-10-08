@@ -22,10 +22,10 @@ on:
                 default: unybak/ssh-config
 
 env:
-    GH_TOKEN: ${{ secrets.UNY_AUTO_PAT }}
+    GH_TOKEN: ${{ secrets.ORG_USER_PAT }}
     BAK_SSH_KEY: ${{ secrets.BAK_SSH_KEY }}
     RCLONE_CONFIG: ${{ secrets.RCLONE_CONFIG }}
-    HOSTYON_PASSPHRASE: ${{ secrets.HOSTYON_PASSPHRASE }}
+    ENCRYPTION_PASSPHRASE: ${{ secrets.ENCRYPTION_PASSPHRASE }}
 
 jobs:
     backup:
